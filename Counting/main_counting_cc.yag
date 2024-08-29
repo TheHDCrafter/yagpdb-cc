@@ -83,13 +83,13 @@
 		{{/*Countingrole part*/}}
 		{{$sdict := sdict}}{{with (dbGet 0 "countingroleblock")}}{{$sdict = .Value}}{{end}}
 		{{if and $countingrole}}
-            {{if and (ne $db.countingrole .User.ID) (targetHasRoleID $db.countingrole $countingrole)}}
-                {{takeRoleID $db.countingrole $countingrole}}
-            {{end}}
-			{{if and (not $blockrole) ($sdict.Get (str .User.ID)|not)}}
-				{{addRoleID $countingrole}}
-				{{$db.Set "countingrole" .User.ID}}
-			{{end}}
+            		{{if and (ne $db.countingrole .User.ID) (targetHasRoleID $db.countingrole $countingrole)}}
+                		{{takeRoleID $db.countingrole $countingrole}}
+            		{{end}}
+            		{{if and (not $blockrole) ($sdict.Get (str .User.ID)|not)}}
+		        	{{addRoleID $countingrole}}
+			    	{{$db.Set "countingrole" .User.ID}}
+            		{{end}}
 		{{end}}
 
 		{{$db.Set "lastCounter" .User.ID}}
